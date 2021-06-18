@@ -19,6 +19,7 @@ object TikaTest {
     val binRDD = sc.binaryFiles(args(0))
     val textRDD = binRDD.map(file => {parseFile(file._2.open( ))})
     textRDD.saveAsTextFile(args(1))
+    sc.stop()
   }
 
   def parseFile(stream: DataInputStream): String = {
