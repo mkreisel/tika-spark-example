@@ -1,1 +1,8 @@
 # tika-spark-example
+This repository gives a minimal example for using Tika in Spark on EMR. Please read the corresponding article for a full walkthrough. The tika-core and tika-parsers JARs supplied here have been built with dependency shading on Apache commons-compress to avoid dependency conflicts between Spark and Tika. This issue and the solution are documented [here](https://forums.databricks.com/questions/28378/trying-to-use-apache-tika-on-databricks.html). If you want to run the example as quickly as possible, run deploy.sh and supply the necessary S3 paths as documented in the script. 
+
+## Build
+To build the project, ensure you have sbt installed, then run <code>sbt package</code> The resulting JAR can be found in the target directory, and is equivalent to tika-spark_2.12-1.0.jar supplied here.
+
+## Run
+To run the code on AWS, ensure that you have a local key with full permissions for Elastic Map Reduce. You also need an S3 bucket containing documents with text you would like to extract (labeled *input-bucket* below), a bucket where extracted text will be written (*output-bucket*) and a bucket where JARs and other resources will be stored (*resource-bucket*). These could also be different subdirectories within a single S3 bucket. Given all this, run <code>sh deploy.sh s3://input-bucket s3://output-bucket resource-bucket</code> You should see the cluster appear in the EMR console. The job will execute and the cluster will be destroyed upon completion. 
