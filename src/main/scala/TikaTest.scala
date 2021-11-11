@@ -4,16 +4,15 @@ package extract;
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
-import org.apache.tika.parser.AutoDetectParser
+import org.apache.tika.parser._
 import org.apache.tika.sax.BodyContentHandler
 import org.apache.tika.metadata.Metadata
-import org.apache.tika.parser.ParseContext
 import java.io.DataInputStream
 
 // The first argument must be an S3 path to a directory with documents for text extraction.
 // The second argument must be an S3 path to a directory where extracted text will be written.
 object TikaTest {
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit =  {
     val conf = new SparkConf().setAppName("Tika Test")
     val sc = new SparkContext(conf)
     val binRDD = sc.binaryFiles(args(0))

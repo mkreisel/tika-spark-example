@@ -4,7 +4,7 @@ OUTPUT_S3_PATH=$2 # S3 path where extracted text will be written (e.g. s3://my-b
 RESOURCES_S3_PATH=$3 # S3 path where JARs and bootstrap script will be stored (e.g. my-bucket/jars)
 
 aws s3 cp lib/tika-core-1.26.jar s3://$RESOURCES_S3_PATH/tika-core-1.26.jar 
-aws s3 cp lib/tika-core-1.26.jar s3://$RESOURCES_S3_PATH/tika-parsers-1.26.jar 
+aws s3 cp lib/tika-parsers-1.26.jar s3://$RESOURCES_S3_PATH/tika-parsers-1.26.jar 
 aws s3 cp tika-spark_2.12-1.0.jar s3://$RESOURCES_S3_PATH/tika-spark_2.12-1.0.jar
 aws s3 cp bootstrap.sh s3://$RESOURCES_S3_PATH/bootstrap.sh
 
